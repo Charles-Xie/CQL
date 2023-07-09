@@ -1,0 +1,25 @@
+python -m torch.distributed.launch \
+    --nproc_per_node=8 \
+    --use_env \
+    main.py \
+    --pretrained params/detr-r50-pre-vcoco.pth \
+    --output_dir logs/vcoco_cql/ \
+    --hoi \
+    --dataset_file vcoco \
+    --hoi_path data/v-coco \
+    --num_obj_classes 81 \
+    --num_verb_classes 29 \
+    --backbone resnet50 \
+    --set_cost_bbox 2.5 \
+    --set_cost_giou 1 \
+    --bbox_loss_coef 2.5 \
+    --giou_loss_coef 1 \
+    --interaction_decoder \
+    --image_verb_loss \
+    --num_workers 6 \
+    --epochs 100 \
+    --lr_drop 70 \
+    --verb_loss_type "focal" \
+    --image_verb_loss_type "asl" \
+    --verb_embed_norm \
+    --cat_specific_fc

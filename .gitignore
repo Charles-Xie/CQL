@@ -1,0 +1,7 @@
+**/__pycache__/**
+data/**
+params/**
+logs/**
+!.gitkeep
+params
+*.out

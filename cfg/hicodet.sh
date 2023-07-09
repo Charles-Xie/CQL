@@ -1,0 +1,26 @@
+python -m torch.distributed.launch \
+    --nproc_per_node=8 \
+    --use_env \
+    main.py \
+    --pretrained params/detr-r50-pre-hico.pth \
+    --output_dir logs/hicodet_cql/ \
+    --hoi \
+    --dataset_file hico \
+    --hoi_path data/hico_20160224_det \
+    --num_obj_classes 80 \
+    --num_verb_classes 117 \
+    --backbone resnet50 \
+    --set_cost_bbox 2.5 \
+    --set_cost_giou 1 \
+    --bbox_loss_coef 2.5 \
+    --giou_loss_coef 1 \
+    --interaction_decoder \
+    --image_verb_loss \
+    --num_workers 6 \
+    --epochs 100 \
+    --lr_drop 70 \
+    --verb_loss_type "focal" \
+    --image_verb_loss_type "asl" \
+    --verb_embed_norm \
+    --cat_specific_fc \
+    --i_hidden_dim 512
